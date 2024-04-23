@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+service WarehouseManagement {
+  rpc listProducts(ListProductsRequest) returns (ListProductsResponse);
+}
+
+message ListProductsRequest {}
+
+message ListProductsResponse {
+  repeated Product products = 1;
+}
+
+message Product {
+  string id = 1;
+  string name = 2;
+  int32 quantity = 3;
+}
+

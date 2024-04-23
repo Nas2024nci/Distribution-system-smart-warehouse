@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service StockTracking {
+  rpc trackStock(TrackStockRequest) returns (TrackStockResponse);
+}
+
+message TrackStockRequest {
+  string productId = 1;
+}
+
+message TrackStockResponse {
+  int32 quantity = 1;
+}
