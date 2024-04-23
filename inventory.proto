@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package warehouse;
+
+// The inventory service for managing stock levels
+service InventoryService {
+    rpc CheckStock (StockRequest) returns (StockResponse);
+    rpc UpdateStock (StockUpdateRequest) returns (StockUpdateResponse) {
+        option (google.api.http) = {
+            put: "/inventory/update"
+            body: "*"
+        };
+    }
+}
+
+message StockRequest {
+    string product_id = 1;
+}
+
+message StockResponse {
+    string product_id = 1;
+    int32 quantity = 2;
+}
+
+message StockUpdateRequest {
+    string product_id = 1;
+    int32 adjustment = 2;  // Positive to add, negative to remove
+}
+
+message StockUpdateResponse {
+    string product_id = 1;
+    int32 new_quantity = 2;
+}
