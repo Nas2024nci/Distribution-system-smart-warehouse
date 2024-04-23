@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package warehouse;
+
+// The order management service for handling orders
+service OrderService {
+    rpc PlaceOrder (OrderRequest) returns (OrderResponse);
+    rpc StreamOrders (OrderStreamRequest) returns (stream OrderResponse);
+}
+
+message OrderRequest {
+    string product_id = 1;
+    int32 quantity = 2;
+}
+
+message OrderResponse {
+    string order_id = 1;
+    string product_id = 2;
+    int32 quantity = 3;
+    string status = 4; // e.g., "processed", "failed"
+}
+
+message OrderStreamRequest {}

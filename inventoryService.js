@@ -33,7 +33,6 @@ function updateStock(call, callback) {
         });
     }
 }
-
 const server = new grpc.Server();
 server.addService(inventoryProto.InventoryService.service, { checkStock, updateStock });
 server.bindAsync('0.0.0.0:50051', grpc.ServerCredentials.createInsecure(), () => {
